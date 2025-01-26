@@ -15,6 +15,17 @@ public class AbuHurairah {
     System.out.println(s);
   }
 
+  public static void serveRequestBack(String s, Task task, int i) {
+    serve(s + "\n       " + task.toString() +
+            "\n     " + i + " tasks left love.\n" + LINE + "\n");
+  }
+
+  public static class MissingDescriptionException extends Exception {
+    public MissingDescriptionException() {
+      super("you're likely missing a request description");
+    }
+  }
+
   public static void main(String[] args) {
     // Welcome prompt
     serve(
@@ -41,71 +52,83 @@ public class AbuHurairah {
       } else {
         serve(LINE);
         Task task;
-        String[] requestArgsArr = request.split(" ");
-        String reqType = requestArgsArr[0].toUpperCase();
-        String reqArgsString = requestArgsArr.length > 1
-                ? String.join(" ", Arrays.asList(requestArgsArr).subList(1, requestArgsArr.length))
-                : "\n";
-        Req reqTypeEnum = Req.valueOf(reqType.toUpperCase());
         try {
+          String[] requestArgsArr = request.split(" ");
+          String reqType = requestArgsArr[0].toUpperCase();
+          String reqArgsString = String.join(" ", Arrays.asList(requestArgsArr).
+                  subList(1, requestArgsArr.length));
+          if (requestArgsArr.length <= 1 && !reqType.equalsIgnoreCase(Req.LIST.toString())) {
+            throw new MissingDescriptionException();
+          }
+          Req reqTypeEnum = Req.valueOf(reqType.toUpperCase());
           switch (reqTypeEnum) {
-            case MARK:
-              int index = Integer.parseInt(reqArgsString);
-              task = list.get(index - 1);
-              task.setComplete(true);
-              unDoneCount--;
-              serve("     Alhamdulillah one down");
-              serve("       " + task.toString() + "\n" + "     " +
-                      unDoneCount + " tasks left love.");
-              serve(LINE + "\n");
-              break;
-            case UNMARK:
-              index = Integer.parseInt(reqArgsString);
-              task = list.get(index - 1);
-              task.setComplete(false);
-              unDoneCount++;
-              serve("     Verily with hardship comes ease");
-              serve("       " + task.toString() + "\n" + "     " +
-                      unDoneCount + " tasks left love.");
-              serve(LINE + "\n");
-              break;
-            case EVENT:
-              task = new Event(reqArgsString.split("/from")[0], reqArgsString.split("/from")[1].split("/to")[0],
-                      reqArgsString.split("/to")[1]);
-              list.add(task);
-              unDoneCount++;
-              serve("     Sure thing, I've added this task:\n       " + task.toString() +
-                      "\n     " + list.size() + " tasks left love.");
-              serve(LINE + "\n");
-              break;
-            case DEADLINE:
-              task = new Deadline(reqArgsString.split("/by")[0], reqArgsString.split("/by")[1]);
-              list.add(task);
-              unDoneCount++;
-              serve("     Sure thing, I've added this task:\n       " + task.toString() +
-                      "\n     " + list.size() + " tasks left love.");
-              serve(LINE + "\n");
-              break;
-            case TODO:
-              task = new Todo(reqArgsString);
-              list.add(task);
-              unDoneCount++;
-              serve("     Sure thing, I've added this task:\n       " + task.toString() +
-                      "\n     " + list.size() + " tasks left love.");
-              serve(LINE + "\n");
-              break;
             case LIST:
+              if(list.size() == 0) {
+                serve("     No new tasks, YAY");
+                serve(LINE + "\n");
+                break;
+              }
               serve("     That's a lot of things to do...");
               for (int i = 0; i < list.size(); i++) {
                 serve("      " + (i + 1) + "." + list.get(i).toString());
               }
               serve(LINE + "\n");
               break;
+            case MARK:
+              int index = Integer.parseInt(reqArgsString);
+              task = list.get(index - 1);
+              if (task.isComplete()) {
+                serve("Task already marked as completed");
+                break;
+              } else {
+                task.setComplete(true);
+                unDoneCount--;
+                serveRequestBack("     Alhamdulillah one down", task, unDoneCount);
+              }
+              break;
+            case UNMARK:
+              index = Integer.parseInt(reqArgsString);
+              task = list.get(index - 1);
+              if (!task.isComplete()) {
+                serve("Task already marked as not completed");
+                 break;
+              } else {
+                task.setComplete(false);
+                unDoneCount--;
+                serveRequestBack("     Verily with hardship comes ease", task, unDoneCount);
+              }
+              break;
+            case EVENT:
+              task = new Event(reqArgsString.split("/from")[0], reqArgsString.split("/from")[1].split("/to")[0],
+                      reqArgsString.split("/to")[1]);
+              list.add(task);
+              unDoneCount++;
+              serveRequestBack("     Sure thing, I've added this task:", task, unDoneCount);
+              break;
+            case DEADLINE:
+              task = new Deadline(reqArgsString.split("/by")[0], reqArgsString.split("/by")[1]);
+              list.add(task);
+              unDoneCount++;
+              serveRequestBack("     Sure thing, I've added this task:", task, unDoneCount);
+              break;
+            case TODO:
+              task = new Todo(reqArgsString);
+              list.add(task);
+              unDoneCount++;
+              serveRequestBack("     Sure thing, I've added this task:", task, unDoneCount);
+              break;
             default:
           }
-        } catch (IllegalArgumentException e){
-          serve("please use one of the following commands:" +
-                  "list, mark, unmark, event, deadline, todo");
+        } catch (IllegalArgumentException e) {
+          serve("     Please use one of the following commands:\n" +
+                  "     list, mark, unmark, event, deadline, todo.\n" + LINE + "\n");
+        } catch (ArrayIndexOutOfBoundsException e) {
+          serve("     You've inputted an invalid description for this task,\n" +
+                  "     please consult the docs.\n" + LINE + "\n");
+        } catch (MissingDescriptionException e) {
+          serve("     You're missing a request description.\n" + LINE + "\n");
+        } catch (IndexOutOfBoundsException e) {
+          serve("     Your item doesn't...exist....\n" + LINE + "\n");
         }
       }
     }

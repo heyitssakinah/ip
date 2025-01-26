@@ -11,6 +11,10 @@ public abstract class Task {
         this.complete = complete;
     }
 
+    public boolean isComplete() {
+        return complete;
+    }
+
     public String toString() {
         return complete ? "[X] " + description : "[ ] " + description;
     }
