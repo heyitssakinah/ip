@@ -13,7 +13,7 @@ src/main/resources/docs/
 *.iml
 bin/
 
-# Classes
+# Compiled classes
 *.class
 
 /text-ui-test/ACTUAL.TXT

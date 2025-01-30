@@ -14,4 +14,8 @@ deadline
 event something /by
 deadline something /by 2
 blurgh ref
+mark 2
+list
+delete 2
+delete 3
 bye

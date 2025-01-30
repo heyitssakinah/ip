@@ -8,7 +8,7 @@ public class AbuHurairah {
   static String LINE =
     "    ____________________________________________________________";
   public static enum Req {
-    MARK, UNMARK, EVENT, DEADLINE, TODO, LIST, BYE;
+    MARK, UNMARK, EVENT, DEADLINE, TODO, LIST, DELETE, BYE;
   }
 
   public static void serve(String s) {
@@ -63,7 +63,7 @@ public class AbuHurairah {
           Req reqTypeEnum = Req.valueOf(reqType.toUpperCase());
           switch (reqTypeEnum) {
             case LIST:
-              if(list.size() == 0) {
+              if(list.isEmpty()) {
                 serve("     No new tasks, YAY");
                 serve(LINE + "\n");
                 break;
@@ -94,7 +94,7 @@ public class AbuHurairah {
                  break;
               } else {
                 task.setComplete(false);
-                unDoneCount--;
+                unDoneCount++;
                 serveRequestBack("     Verily with hardship comes ease", task, unDoneCount);
               }
               break;
@@ -117,6 +117,14 @@ public class AbuHurairah {
               unDoneCount++;
               serveRequestBack("     Sure thing, I've added this task:", task, unDoneCount);
               break;
+            case DELETE:
+              index = Integer.parseInt(reqArgsString);
+              task = list.get(index - 1);
+              if (!task.isComplete()) {
+                unDoneCount--;
+              }
+              list.remove(index - 1);
+              serveRequestBack("     OKIE DELETED THIS TASK:", task, unDoneCount);
             default:
           }
         } catch (IllegalArgumentException e) {
