@@ -12,7 +12,7 @@ todo
 event
 deadline
 event something /by
-deadline something /by 2
+deadline something /by 3
 blurgh ref
 mark 2
 list
