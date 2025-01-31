@@ -26,7 +26,7 @@ public class AbuHurairah {
 
     public static void serveRequestBack(String s, Task task, int i, boolean isPrintable) {
         serve(s + "\n       " + task.toString() +
-                "\n     " + i + " tasks left love.\n" + LINE + "\n", isPrintable);
+                "\n     " + i + " tasks left lovee.\n" + LINE + "\n", isPrintable);
     }
 
     /**
