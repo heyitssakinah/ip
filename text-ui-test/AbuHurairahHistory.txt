@@ -1,0 +1,4 @@
+     [T][ ] eat
+     [T][X] cry
+     [E][ ] project meeting (from: Aug 6th 2pm to: 4pm)
+     [T][ ] borrow book

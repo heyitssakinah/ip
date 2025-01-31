@@ -1,21 +1,2 @@
-mark 1
-unmark 2
 list
-todo borrow book
-deadline return book /by Sunday
-event project meeting /from Aug 6th 2pm /to 4pm
-list
-mark 2
-unmark 2
-
-todo
-event
-deadline
-event something /by
-deadline something /by 3
-blurgh ref
-mark 2
-list
-delete 2
-delete 3
 bye
