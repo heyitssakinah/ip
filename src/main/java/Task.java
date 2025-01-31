@@ -15,6 +15,10 @@ public abstract class Task {
         return complete;
     }
 
+    public boolean isOverdue() {
+        return false;
+    }
+
     public String toString() {
         return complete ? "[X] " + description : "[ ] " + description;
     }

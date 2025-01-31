@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.format.DateTimeParseException;
 
 public class AbuHurairah {
 
@@ -14,7 +15,7 @@ public class AbuHurairah {
             "    ____________________________________________________________";
 
     public static enum Req {
-        MARK, UNMARK, EVENT, DEADLINE, TODO, LIST, DELETE, BYE;
+        MARK, UNMARK, EVENT, DEADLINE, TODO, LIST, DELETE, BYE, GET;
     }
 
     public static void serve(String s, boolean bool) {
@@ -26,7 +27,7 @@ public class AbuHurairah {
 
     public static void serveRequestBack(String s, Task task, int i, boolean isPrintable) {
         serve(s + "\n       " + task.toString() +
-                "\n     " + i + " tasks left lovee.\n" + LINE + "\n", isPrintable);
+                "\n     " + i + " tasks left love.\n" + LINE + "\n", isPrintable);
     }
 
     /**
@@ -176,6 +177,15 @@ public class AbuHurairah {
                     }
                     list.remove(index - 1);
                     serveRequestBack("     OKIE DELETED THIS TASK:", task, unDoneCount, isPrintable);
+                case GET:
+                    if (reqArgsString.equalsIgnoreCase("OVERDUE")) {
+                        serve("     Here are the OVERDUE tasks :)", isPrintable);
+                        list.stream().filter(overdueTask -> overdueTask instanceof Deadline)
+                                .filter(overdueTask -> overdueTask.isOverdue() && !overdueTask.isComplete())
+                                .forEach(overdueTask -> serve("     " + overdueTask.toString(), isPrintable));
+                        serve(LINE + "\n", isPrintable);
+                    }
+                    break;
                 default:
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -183,6 +193,9 @@ public class AbuHurairah {
                     "     please consult the docs.\n" + LINE + "\n", true);
         } catch (IndexOutOfBoundsException e) {
             serve("     Your item doesn't...exist....\n" + LINE + "\n", true);
+        } catch (DateTimeParseException e) {
+            serve("     Your date format is wrong.\n     Please use the YYYY-MM-DD HH:mm OR MMM dd yyyy hh:mm a" +
+                    " format\n" + LINE + "\n", true);
         }
         return unDoneCount;
     }
@@ -199,7 +212,8 @@ public class AbuHurairah {
             serve(LINE + "\n" + "     Assalamualaikum! I'm " +
                     NAME + "\n" + "     What can I do for you?\n" + LINE + "\n", true);
         } catch (IOException e) {
-            serve("Your previous life might be corrupted.\n No history found", true);
+            serve(LINE + "\n", true);
+            serve("     Your previous life might be corrupted.\n No history found", true);
         }
         // Get request
         Scanner input = new Scanner(System.in);
@@ -213,7 +227,8 @@ public class AbuHurairah {
                     try {
                         store(list);
                     } catch (IOException e) {
-                        serve("unable to save Data :(" + e.getMessage(), true);
+                        serve(LINE + "\n", true);
+                        serve("     unable to save Data :(" + e.getMessage(), true);
                     }
                 }
                 serve(LINE + "\n     Hope to see you again soon!\n" + LINE + "\n", true);
@@ -235,7 +250,7 @@ public class AbuHurairah {
             } catch (IllegalArgumentException e) {
                 serve(LINE + "\n", true);
                 serve("     Please use one of the following commands:\n" +
-                        "     list, mark, unmark, event, deadline, todo.\n" + LINE + "\n", true);
+                        "     list, mark, unmark, event, deadline, todo, get.\n" + LINE + "\n", true);
             }
         }
     }
