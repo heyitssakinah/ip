@@ -1,3 +1,5 @@
+package abuhurairah;
+
 public class Ui {
     private String LINE =
             "    ____________________________________________________________";
