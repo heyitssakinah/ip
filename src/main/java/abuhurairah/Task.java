@@ -9,6 +9,10 @@ public abstract class Task {
         this.complete = false;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setComplete(boolean complete) {
         this.complete = complete;
     }

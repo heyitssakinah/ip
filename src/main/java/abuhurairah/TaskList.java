@@ -15,7 +15,7 @@ public class TaskList {
     }
 
     private static enum Req {
-        MARK, UNMARK, EVENT, DEADLINE, TODO, LIST, DELETE, BYE, GET;
+        MARK, UNMARK, EVENT, DEADLINE, TODO, LIST, DELETE, BYE, GET, FIND;
     }
 
     public TaskList() {
@@ -72,6 +72,21 @@ public class TaskList {
                     }
                     ui.seperator(isPrintable);
                     break;
+                case FIND:
+                    String searchItem = reqArgsString.split(" ")[0];
+                    boolean found = false;
+                    ui.serve("Searching for your item....", isPrintable);
+                    for (Task taskItem : tasks) {
+                        if (taskItem.getDescription().toLowerCase().contains(searchItem.toLowerCase())) {
+                            ui.serve(taskItem.toString(), isPrintable);
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        ui.serve("no such item!!!");
+                    }
+                    ;
+                    break;
                 case MARK:
                     int index = parser.getIntToMark(reqArgsString);
                     task = tasks.get(index - 1);
@@ -97,7 +112,8 @@ public class TaskList {
                     }
                     break;
                 case EVENT:
-                    task = new Event(reqArgsString.split("/from")[0], reqArgsString.split("/from")[1].split("/to")[0],
+                    task = new Event(reqArgsString.split("/from")[0],
+                            reqArgsString.split("/from")[1].split("/to")[0],
                             reqArgsString.split("/to")[1]);
                     tasks.add(task);
                     unDoneCount++;

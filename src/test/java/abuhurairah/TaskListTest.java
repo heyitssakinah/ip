@@ -31,6 +31,25 @@ public class TaskListTest {
     }
 
     @Test
+    public void argumentHandling_findItem_exists() {
+        taskList.argumentHandling("todo Read book", 0, false);
+        taskList.argumentHandling("todo eat book", 0, false);
+        taskList.argumentHandling("find book", 1, true);
+        String outputs = outputStream.toString();
+        System.out.println("Captured Output: " + outputs);
+        String expectedOutput = "Read book";
+        assertTrue(outputs.contains(expectedOutput));
+    }
+
+    @Test
+    public void argumentHandling_findItem_doesNotExists() {
+        taskList.argumentHandling("todo Read", 0, false);
+        taskList.argumentHandling("find book", 1, true);
+        String output = outputStream.toString().trim();
+        assertTrue(output.contains("no such item!!!"));
+    }
+
+    @Test
     public void argumentHandling_listCommand_correctOutput() {
         taskList.argumentHandling("list", 0, true);
         String output = outputStream.toString().trim();
