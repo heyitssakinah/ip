@@ -1,12 +1,6 @@
 package abuhurairah;
 
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Arrays;
-import java.io.IOException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.time.format.DateTimeParseException;
 
 public class AbuHurairah {
     public static Ui ui;

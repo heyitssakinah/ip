@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Parser {
-    private Ui ui;
 
     public Parser() {
-        this.ui = new Ui();
     }
 
     public String getArgs(String[] requestArgsArr) {
