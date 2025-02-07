@@ -11,14 +11,12 @@ import java.util.Arrays;
  * tasks and user commands.
  */
 public class Parser {
-    private Ui ui;
 
     /**
      * Constructs a Parser
      * object with an instance of Ui}.
      */
     public Parser() {
-        this.ui = new Ui();
     }
 
     /**
