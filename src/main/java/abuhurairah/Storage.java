@@ -46,9 +46,6 @@ public class Storage {
             return unDoneCount;
         } catch (FileNotFoundException e) { // Start a new chat Bot
             ui.showWelcome(name);
-        } catch (IOException e) {
-            ui.seperator();
-            ui.serve("Your previous life might be corrupted.\n No history found");
         }
         return 0;
     }
