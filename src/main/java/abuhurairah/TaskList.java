@@ -31,7 +31,7 @@ public class TaskList {
      * Enumeration of valid request types.
      */
     private static enum Req {
-        MARK, UNMARK, EVENT, DEADLINE, TODO, LIST, DELETE, BYE, GET;
+        MARK, UNMARK, EVENT, DEADLINE, TODO, LIST, DELETE, BYE, GET, FIND;
     }
 
     /**
@@ -115,6 +115,21 @@ public class TaskList {
                         ui.serve(" " + (i + 1) + "." + tasks.get(i).toString(), isPrintable);
                     }
                     ui.separator(isPrintable);
+                    break;
+                case FIND:
+                    String searchItem = reqArgsString.split(" ")[0];
+                    boolean found = false;
+                    ui.serve("Searching for your item....", isPrintable);
+                    for (Task taskItem : tasks) {
+                        if (taskItem.getDescription().toLowerCase().contains(searchItem.toLowerCase())) {
+                            ui.serve(taskItem.toString(), isPrintable);
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        ui.serve("no such item!!!");
+                    }
+                    ;
                     break;
                 case MARK:
                     int index = parser.getIntToMark(reqArgsString);

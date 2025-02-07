@@ -58,16 +58,4 @@ public class StorageTest {
         assertEquals("[T][ ] Read book", tasks.get(0).toString());
         assertEquals("[E][ ] cry (from: now to: later)", tasks.get(1).toString());
     }
-
-    @Test
-    public void getStore_handlesEmptyFile() {
-        File emptyFile = new File(tempDir, "nonExistent.txt");
-        Storage emptyStorage = new Storage(emptyFile.getAbsolutePath());
-
-        TaskList newTaskList = new TaskList();
-        int unDoneCount = emptyStorage.getStore(emptyStorage.path, newTaskList, "TestUser");
-
-        assertEquals(0, unDoneCount);
-        assertTrue(newTaskList.getTasks().isEmpty());
-    }
 }

@@ -21,9 +21,18 @@ public abstract class Task {
     }
 
     /**
+     * Gets the description of a task
+     *
+     * @return A string of the description
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    /**
      * Sets the completion status of the task.
      *
-     * @param complete {@code true} if the task is completed, {@code false} otherwise.
+     * @param complete true if the task is completed, false otherwise.
      */
     public void setComplete(boolean complete) {
         this.complete = complete;
