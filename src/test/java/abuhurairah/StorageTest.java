@@ -2,7 +2,6 @@ package abuhurairah;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,11 +12,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 public class StorageTest {
-    private Storage storage;
-    private TaskList taskList;
-
     @TempDir // JUnit5 Temporary Directory (auto-deletes after test)
     File tempDir;
+    private Storage storage;
+    private TaskList taskList;
 
     @BeforeEach
     public void setUp() {
@@ -51,7 +49,7 @@ public class StorageTest {
         storage.store(taskList);
 
         TaskList loadedList = new TaskList();
-        int unDoneCount = storage.getStore(storage.path, loadedList, "TestUser");
+        int unDoneCount = storage.getStore(storage.getPath(), loadedList, "TestUser");
 
         List<Task> tasks = loadedList.getTasks();
         assertEquals(2, tasks.size());

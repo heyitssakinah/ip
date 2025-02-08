@@ -1,7 +1,5 @@
 package abuhurairah;
 
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -27,8 +25,8 @@ public class Parser {
      * @return A string containing the extracted arguments.
      */
     public String getArgs(String[] requestArgsArr) {
-        return String.join(" ", Arrays.asList(requestArgsArr).
-                subList(1, requestArgsArr.length));
+        return String.join(" ", Arrays.asList(requestArgsArr)
+                .subList(1, requestArgsArr.length));
     }
 
     /**
@@ -74,6 +72,4 @@ public class Parser {
         }
         return unDoneCount;
     }
-
-
 }

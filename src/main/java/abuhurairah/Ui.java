@@ -5,7 +5,7 @@ package abuhurairah;
  * displaying messages, errors, and task updates.
  */
 public class Ui {
-    private String LINE =
+    private final String line =
             "    ____________________________________________________________";
 
     /**
@@ -24,6 +24,15 @@ public class Ui {
         if (bool) {
             System.out.println("     " + s);
         }
+    }
+
+    /**
+     * Prints a message.
+     *
+     * @param s The message to print.
+     */
+    public void serve(String s) {
+        System.out.println("     " + s);
     }
 
     /**
@@ -46,15 +55,6 @@ public class Ui {
     }
 
     /**
-     * Prints a message.
-     *
-     * @param s The message to print.
-     */
-    public void serve(String s) {
-        System.out.println("     " + s);
-    }
-
-    /**
      * Displays a response message along with a task and the number of remaining tasks.
      *
      * @param s           The response message.
@@ -63,8 +63,8 @@ public class Ui {
      * @param isPrintable If true, the message is printed.
      */
     public void serveRequestBack(String s, Task task, int i, boolean isPrintable) {
-        serve(s + "\n       " + task.toString() +
-                "\n     " + i + " tasks left love.\n" + LINE + "\n", isPrintable);
+        serve(s + "\n       " + task.toString()
+                + "\n     " + i + " tasks left love.\n" + line + "\n", isPrintable);
     }
 
     /**
@@ -74,8 +74,8 @@ public class Ui {
      */
     public void showWelcomeBack(String name) {
         separator();
-        serve("Assalamualaikum! Welcome Back! I'm " +
-                name + "\n");
+        serve("Assalamualaikum! Welcome Back! I'm "
+                + name + "\n");
         serve("What can I do for you?");
         separator();
     }
@@ -87,8 +87,8 @@ public class Ui {
      */
     public void showWelcome(String name) {
         separator();
-        serve("Assalamualaikum! I'm " +
-                name + "\n");
+        serve("Assalamualaikum! I'm "
+                + name + "\n");
         serve("What can I do for you?");
         separator();
     }
@@ -97,7 +97,7 @@ public class Ui {
      * Prints a separator line.
      */
     public void line() {
-        System.out.println(LINE);
+        System.out.println(line);
     }
 
     /**
@@ -107,7 +107,7 @@ public class Ui {
      */
     public void line(boolean b) {
         if (b) {
-            System.out.println(LINE);
+            System.out.println(line);
         }
     }
 
@@ -115,7 +115,7 @@ public class Ui {
      * Prints a separator line followed by a newline.
      */
     public void separator() {
-        System.out.println(LINE + "\n");
+        System.out.println(line + "\n");
     }
 
     /**
@@ -125,9 +125,7 @@ public class Ui {
      */
     public void separator(boolean b) {
         if (b) {
-            System.out.println(LINE + "\n");
+            System.out.println(line + "\n");
         }
     }
-
-
 }

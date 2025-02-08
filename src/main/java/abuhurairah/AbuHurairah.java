@@ -2,25 +2,29 @@ package abuhurairah;
 
 import java.util.Scanner;
 
+/**
+ * The main class for the AbuHurairah task management application.
+ * This program stores and retrieves tasks, allowing users to interact
+ * via a command-line interface.
+ */
 public class AbuHurairah {
-    public static Ui ui;
-    public static Storage storage;
-    public static Parser parser;
-    private static String NAME = "Abu Hurairah";
-
     public static void main(String[] args) {
-        ui = new Ui();
+        Ui ui = new Ui();
+        Storage storage;
+        Parser parser;
+        String name = "Abu Hurairah";
+
         storage = new Storage("./AbuHurairahHistory.txt");
         parser = new Parser();
         int unDoneCount = 0;
         TaskList taskList = new TaskList();
 
         // Get history
-        unDoneCount = storage.getStore("./AbuHurairahHistory.txt", taskList, NAME);
+        unDoneCount = storage.getStore("./AbuHurairahHistory.txt", taskList, name);
         if (!taskList.getTasks().isEmpty()) {
             ui.separator();
             taskList.printStoredList();
-            ui.showWelcomeBack(NAME);
+            ui.showWelcomeBack(name);
         }
 
         // Get request

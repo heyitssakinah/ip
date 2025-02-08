@@ -26,7 +26,7 @@ public class Event extends Task {
      * Returns a string representation of the event task.
      *
      * @return A formatted string representing the event, including its type,
-     * description, start time, and end time.
+     *         description, start time, and end time.
      */
     @Override
     public String toString() {

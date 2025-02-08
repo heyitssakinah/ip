@@ -1,10 +1,9 @@
 package abuhurairah;
 
-import java.io.FileWriter;
 import java.io.File;
-import java.io.IOException;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -12,9 +11,9 @@ import java.util.Scanner;
  * It is responsible for storing and retrieving tasks from persistent storage.
  */
 public class Storage {
-    String path;
-    Parser parser;
-    Ui ui;
+    private final String path;
+    private final Parser parser;
+    private final Ui ui;
 
     /**
      * Constructs a Storage object with the given file path.
@@ -78,5 +77,9 @@ public class Storage {
             ui.showWelcome(name);
         }
         return 0;
+    }
+
+    public String getPath() {
+        return this.path;
     }
 }

@@ -51,13 +51,12 @@ public class Deadline extends Task {
      * Returns a string representation of the deadline task.
      *
      * @return A formatted string representing the deadline task, including its type,
-     * description, and due date.
+     *     description, and due date.
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " +
-                this.by.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a")) +
-                ")";
-
+        return "[D]" + super.toString() + "(by: "
+                + this.by.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"))
+                + ")";
     }
 }
