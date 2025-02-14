@@ -1,6 +1,0 @@
-todo eat!
-EvenT cry /from now /to later
-deadline get swole /by 2024-01-30 23:59
-deadline get extra swole /by Jan 30 2025 11:59 pm
-list
-get overdue
