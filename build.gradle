@@ -34,7 +34,7 @@ test {
 }
 
 application {
-    mainClass.set("abuhurairah.AbuHurairah")
+    mainClass.set("abuhurairah.Launcher")
 }
 
 shadowJar {

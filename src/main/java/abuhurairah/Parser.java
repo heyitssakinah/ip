@@ -36,9 +36,6 @@ public class Parser {
      * @param reqArgsString The string containing the task index.
      * @return The integer representation of the task index.
      */
-    public int getIntToMark(String reqArgsString) {
-        return Integer.parseInt(reqArgsString);
-    }
 
     /**
      * Converts a line of text from the storage file into a task and adds it to the TaskList.
@@ -61,13 +58,13 @@ public class Parser {
         if (cleanedString.split(" ")[1].equals("X")) {
             cleanedString = cleanedString.replaceAll("X ", "");
             cleanedString = cleanedString.replaceAll("  ", " ");
-            unDoneCount = taskList.argumentHandling(cleanedString, unDoneCount, false);
+            taskList.argumentHandling(cleanedString, unDoneCount);
             taskCount++;
-            unDoneCount = taskList.argumentHandling("MARK" + String.valueOf(taskCount),
-                    unDoneCount, false);
+            taskList.argumentHandling("MARK" + String.valueOf(taskCount),
+                    unDoneCount);
         } else {
             cleanedString = cleanedString.replaceAll("    ", " ");
-            unDoneCount = taskList.argumentHandling(cleanedString, unDoneCount, false);
+            taskList.argumentHandling(cleanedString, unDoneCount);
             taskCount++;
         }
         return unDoneCount;

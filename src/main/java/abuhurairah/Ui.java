@@ -1,47 +1,20 @@
 package abuhurairah;
-
+// change to script class
 /**
  * The Ui class handles all user interface interactions, including
  * displaying messages, errors, and task updates.
  */
 public class Ui {
-    private final String line =
-            "    ____________________________________________________________";
-
     /**
      * Constructs a Ui object.
      */
     public Ui() {
     }
-
-    /**
-     * Prints a message if the specified condition is true.
-     *
-     * @param s    The message to print.
-     * @param bool If true, the message is printed.
-     */
-    public void serve(String s, boolean bool) {
-        if (bool) {
-            System.out.println("     " + s);
-        }
-    }
-
-    /**
-     * Prints a message.
-     *
-     * @param s The message to print.
-     */
-    public void serve(String s) {
-        System.out.println("     " + s);
-    }
-
     /**
      * Displays the exit message.
      */
-    public void bye() {
-        separator();
-        serve("Hope to see you again soon!\n");
-        separator();
+    public static String bye() {
+        return "Hope to see you again soon!\n";
     }
 
     /**
@@ -49,9 +22,8 @@ public class Ui {
      *
      * @param e The exception that occurred.
      */
-    public void error(Exception e) {
-        separator();
-        serve("unable to save Data :(" + e.getMessage());
+    public static String error(Exception e) {
+        return "unable to save Data :(" + e.getMessage();
     }
 
     /**
@@ -60,11 +32,10 @@ public class Ui {
      * @param s           The response message.
      * @param task        The task being processed.
      * @param i           The number of remaining tasks.
-     * @param isPrintable If true, the message is printed.
      */
-    public void serveRequestBack(String s, Task task, int i, boolean isPrintable) {
-        serve(s + "\n       " + task.toString()
-                + "\n     " + i + " tasks left love.\n" + line + "\n", isPrintable);
+    public static String serveRequestBack(String s, Task task, int i) {
+        return s + "\n" + task.toString()
+                + "\n" + i + " tasks left love.\n";
     }
 
     /**
@@ -72,12 +43,9 @@ public class Ui {
      *
      * @param name The name of the bot or system.
      */
-    public void showWelcomeBack(String name) {
-        separator();
-        serve("Assalamualaikum! Welcome Back! I'm "
-                + name + "\n");
-        serve("What can I do for you?");
-        separator();
+    public static String showWelcomeBack(String name) {
+        return "Assalamualaikum! Welcome Back! I'm "
+                + name + "\nWhat can I do for you?";
     }
 
     /**
@@ -85,47 +53,8 @@ public class Ui {
      *
      * @param name The name of the bot or system.
      */
-    public void showWelcome(String name) {
-        separator();
-        serve("Assalamualaikum! I'm "
-                + name + "\n");
-        serve("What can I do for you?");
-        separator();
-    }
-
-    /**
-     * Prints a separator line.
-     */
-    public void line() {
-        System.out.println(line);
-    }
-
-    /**
-     * Prints a separator line if the specified condition is true.
-     *
-     * @param b If true, the line is printed.
-     */
-    public void line(boolean b) {
-        if (b) {
-            System.out.println(line);
-        }
-    }
-
-    /**
-     * Prints a separator line followed by a newline.
-     */
-    public void separator() {
-        System.out.println(line + "\n");
-    }
-
-    /**
-     * Prints a separator line followed by a newline if the specified condition is true.
-     *
-     * @param b If true, the separator is printed.
-     */
-    public void separator(boolean b) {
-        if (b) {
-            System.out.println(line + "\n");
-        }
+    public static String showWelcome(String name) {
+        return "Assalamualaikum! I'm "
+                + name + "\nWhat can I do for you?";
     }
 }

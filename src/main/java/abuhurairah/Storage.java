@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class Storage {
     private final String path;
     private final Parser parser;
-    private final Ui ui;
 
     /**
      * Constructs a Storage object with the given file path.
@@ -23,7 +22,6 @@ public class Storage {
     public Storage(String path) {
         this.path = path;
         this.parser = new Parser();
-        this.ui = new Ui();
     }
 
     /**
@@ -49,7 +47,7 @@ public class Storage {
             }
             fileWriter.close();
         } catch (IOException e) {
-            ui.error(e);
+            Ui.error(e);
         }
     }
 
@@ -73,8 +71,7 @@ public class Storage {
             }
             return unDoneCount;
         } catch (FileNotFoundException e) {
-            // Start a new chat Bot if file does not exist
-            ui.showWelcome(name);
+            System.out.println("help im crying");
         }
         return 0;
     }

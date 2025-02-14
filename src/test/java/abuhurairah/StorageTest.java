@@ -32,8 +32,8 @@ public class StorageTest {
 
     @Test
     public void store_savesTasksToFile() throws IOException {
-        taskList.argumentHandling("todo Read book", 0, false);
-        taskList.argumentHandling("EvenT cry /from now /to later", 0, false);
+        taskList.argumentHandling("todo Read book", 0, taskList);
+        taskList.argumentHandling("EvenT cry /from now /to later", 0, taskList);
 
         storage.store(taskList);
         File file = storage.getFile();
@@ -44,8 +44,8 @@ public class StorageTest {
 
     @Test
     public void getStore_loadsTasksFromFile() {
-        taskList.argumentHandling("todo Read book", 0, false);
-        taskList.argumentHandling("EvenT cry /from now /to later", 0, false);
+        taskList.argumentHandling("todo Read book", 0, taskList);
+        taskList.argumentHandling("EvenT cry /from now /to later", 0, taskList);
         storage.store(taskList);
 
         TaskList loadedList = new TaskList();

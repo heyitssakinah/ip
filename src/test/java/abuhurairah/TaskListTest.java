@@ -27,16 +27,16 @@ public class TaskListTest {
     @Test
     public void argumentHandling_addTodoTask_taskAdded() {
         int initialCount = taskList.getTasks().size();
-        taskList.argumentHandling("todo Read book", 0, false);
+        taskList.argumentHandling("todo Read book", 0, taskList);
         assertEquals(initialCount + 1, taskList.getTasks().size());
         assertInstanceOf(Todo.class, taskList.getTasks().get(0));
     }
 
     @Test
     public void argumentHandling_findItem_exists() {
-        taskList.argumentHandling("todo Read book", 0, false);
-        taskList.argumentHandling("todo eat book", 0, false);
-        taskList.argumentHandling("find book", 1, true);
+        taskList.argumentHandling("todo Read book", 0, taskList);
+        taskList.argumentHandling("todo eat book", 0, taskList);
+        taskList.argumentHandling("find book", 1, taskList);
         String outputs = outputStream.toString();
         System.out.println("Captured Output: " + outputs);
         String expectedOutput = "Read book";
@@ -45,15 +45,15 @@ public class TaskListTest {
 
     @Test
     public void argumentHandling_findItem_doesNotExists() {
-        taskList.argumentHandling("todo Read", 0, false);
-        taskList.argumentHandling("find book", 1, true);
+        taskList.argumentHandling("todo Read", 0, taskList);
+        taskList.argumentHandling("find book", 1, taskList);
         String output = outputStream.toString().trim();
         assertTrue(output.contains("no such item!!!"));
     }
 
     @Test
     public void argumentHandling_listCommand_correctOutput() {
-        taskList.argumentHandling("list", 0, true);
+        taskList.argumentHandling("list", 0, taskList);
         String output = outputStream.toString().trim();
         assertTrue(output.contains("No new tasks, YAY"));
     }
@@ -61,7 +61,7 @@ public class TaskListTest {
     @Test
     public void argumentHandling_invalidCommand_errorHandled() {
         int initialCount = taskList.getTasks().size();
-        taskList.argumentHandling("invalidCommand test", 0, false);
+        taskList.argumentHandling("invalidCommand test", 0, taskList);
         assertEquals(initialCount, taskList.getTasks().size()); // Should not add a task
     }
 }
