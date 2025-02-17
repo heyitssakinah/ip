@@ -55,25 +55,21 @@ public class Storage {
      * Loads tasks from the file into the provided TaskList.
      * Parses each line using the Parser and updates the task list.
      *
-     * @param path     The file path to read tasks from.
      * @param taskList The TaskList to store the retrieved tasks.
-     * @param name     The name of the user (used for welcome message if the file is missing).
      * @return The count of tasks that are not yet completed.
      */
-    public int getStore(String path, TaskList taskList, String name) {
+    public void getStore(TaskList taskList) {
         try {
-            int unDoneCount = 0;
-            int taskCount = 1;
+            int taskCount = 0;
             File f = getFile();
             Scanner sc = new Scanner(f);
             while (sc.hasNextLine()) {
-                unDoneCount = parser.textToArrayList(sc.nextLine(), taskList, unDoneCount, taskCount);
+                taskCount++;
+                parser.textToArrayList(sc.nextLine(), taskList, taskCount);
             }
-            return unDoneCount;
         } catch (FileNotFoundException e) {
             System.out.println("help im crying");
         }
-        return 0;
     }
 
     public String getPath() {

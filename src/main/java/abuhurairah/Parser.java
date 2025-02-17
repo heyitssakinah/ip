@@ -42,11 +42,10 @@ public class Parser {
      *
      * @param s           The text line representing a task.
      * @param taskList    The TaskList where the task will be stored.
-     * @param unDoneCount The number of incomplete tasks.
      * @param taskCount   The current task count.
      * @return The updated count of incomplete tasks.
      */
-    public int textToArrayList(String s, TaskList taskList, int unDoneCount, int taskCount) {
+    public void textToArrayList(String s, TaskList taskList, int taskCount) {
         String cleanedString = s.replaceAll("\\[|\\(|\\)", "").trim();
         cleanedString = cleanedString.replaceAll("\\]", " ").trim();
         cleanedString = cleanedString.replaceAll("from:", "/from");
@@ -58,15 +57,11 @@ public class Parser {
         if (cleanedString.split(" ")[1].equals("X")) {
             cleanedString = cleanedString.replaceAll("X ", "");
             cleanedString = cleanedString.replaceAll("  ", " ");
-            taskList.argumentHandling(cleanedString, unDoneCount);
-            taskCount++;
-            taskList.argumentHandling("MARK" + String.valueOf(taskCount),
-                    unDoneCount);
+            taskList.argumentHandling(cleanedString);
+            taskList.argumentHandling("MARK" + String.valueOf(taskCount));
         } else {
             cleanedString = cleanedString.replaceAll("    ", " ");
-            taskList.argumentHandling(cleanedString, unDoneCount);
-            taskCount++;
+            taskList.argumentHandling(cleanedString);
         }
-        return unDoneCount;
     }
 }

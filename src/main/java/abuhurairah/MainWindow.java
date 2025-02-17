@@ -21,9 +21,6 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private AbuHurairah abuHurairah;
-    private Storage storage;
-    private TaskList taskList;
-    private String name;
 
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image abuHurairahImage = new Image(this.getClass().getResourceAsStream("/images/DaAbuhurairah.png"));
@@ -40,10 +37,10 @@ public class MainWindow extends AnchorPane {
     }
 
     public void start() {
-        storage = new Storage("./AbuHurairahHistory.txt");
-        taskList = new TaskList();
-        name = "Abu Hurairah";
-        storage.getStore("./AbuHurairahHistory.txt", taskList, name);
+        Storage storage = abuHurairah.getStorage();
+        TaskList taskList = abuHurairah.getTaskList();
+        String name = abuHurairah.getName();
+        storage.getStore(taskList);
 
         // Display stored tasks and welcome message
         if (!taskList.getTasks().isEmpty()) {
@@ -62,9 +59,9 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
 
-        // show welcome
-
         // handle bye
+        TaskList taskList = abuHurairah.getTaskList();
+        Storage storage = abuHurairah.getStorage();
         if (taskList.isBye(input)) {
             if (!taskList.isEmpty()) {
                 storage.store(taskList);
@@ -75,6 +72,7 @@ public class MainWindow extends AnchorPane {
             userInput.clear();
             javafx.application.Platform.exit();
         }
+
         String response = abuHurairah.getResponse(input, taskList);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),

@@ -1,5 +1,6 @@
 package abuhurairah;
 
+import java.awt.*;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
  */
 public class TaskList {
     private ArrayList<Task> tasks;
+    private TaskTracker taskTracker;
     private Parser parser;
 
     /**
@@ -17,6 +19,7 @@ public class TaskList {
     public TaskList() {
         this.tasks = new ArrayList<>();
         this.parser = new Parser();
+        this.taskTracker = new TaskTracker();
     }
 
     public String printStoredList() {
@@ -63,12 +66,7 @@ public class TaskList {
         return request.equalsIgnoreCase(Req.LIST.toString());
     }
 
-    /**
-     * Checks if the task list is empty.
-     *
-     * @return true if the list is empty, otherwise false.
-     */
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return tasks.isEmpty();
     }
 
@@ -77,10 +75,9 @@ public class TaskList {
      * and listing tasks. It also handles overdue task retrieval.
      *
      * @param taskString  The raw user input string.
-     * @param unDoneCount The number of incomplete tasks before the command.
      * @return response of the bot
      */
-    public String argumentHandling(String taskString, int unDoneCount) {
+    public String argumentHandling(String taskString) {
         String[] requestArgsArr = taskString.split(" ");
         String reqType = requestArgsArr[0];
         String reqArgsString = parser.getArgs(requestArgsArr);
@@ -95,17 +92,17 @@ public class TaskList {
             case FIND:
                 return RetrieveCommand.findTask(reqArgsString, tasks);
             case MARK:
-                return MarkCommand.markTask(reqArgsString, tasks);
+                return MarkCommand.markTask(reqArgsString, tasks, taskTracker);
             case UNMARK:
-                return MarkCommand.unMarkTask(reqArgsString, tasks);
+                return MarkCommand.unMarkTask(reqArgsString, tasks, taskTracker);
             case EVENT:
-                return AddCommand.addEvent(reqArgsString, tasks);
+                return AddCommand.addEvent(reqArgsString, tasks, taskTracker);
             case DEADLINE:
-                return AddCommand.addDeadline(reqArgsString, tasks);
+                return AddCommand.addDeadline(reqArgsString, tasks, taskTracker);
             case TODO:
-                return AddCommand.addTodo(reqArgsString, tasks);
+                return AddCommand.addTodo(reqArgsString, tasks, taskTracker);
             case DELETE:
-                return DeleteCommand.deleteTask(reqArgsString, tasks);
+                return DeleteCommand.deleteTask(reqArgsString, tasks, taskTracker);
             case GET:
                 return RetrieveCommand.getOverdueTask(reqArgsString, tasks);
             default:
