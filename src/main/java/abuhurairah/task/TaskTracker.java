@@ -16,6 +16,7 @@ public class TaskTracker {
 
     public void removeCompletedTask() {
         completedTasks--;
+        assert completedTasks >= 0 : "Completed tasks cannot be negative";
     }
 
     public int getCompletedTasks() {

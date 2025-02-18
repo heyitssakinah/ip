@@ -44,9 +44,11 @@ public class Storage {
      * @param taskList The TaskList containing tasks to be stored.
      */
     public void store(TaskList taskList) {
+        assert taskList != null : "TaskList cannot be null";
         try {
             FileWriter fileWriter = new FileWriter(path);
             for (Task task : taskList.getTasks()) {
+                assert task != null : "Task cannot be null";
                 fileWriter.write(task.toString() + "\n");
             }
             fileWriter.close();
@@ -62,6 +64,7 @@ public class Storage {
      * @param taskList The TaskList to store the retrieved tasks.
      */
     public void getStore(TaskList taskList) {
+        assert taskList != null : "TaskList cannot be null";
         try {
             int taskCount = 0;
             File f = getFile();
@@ -71,7 +74,8 @@ public class Storage {
                 parser.textToArrayList(sc.nextLine(), taskList, taskCount);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("help im crying");
+            System.err.println("Error: Storage file not found at " + path);
+            e.printStackTrace(); // Debugging purpose
         }
     }
 
