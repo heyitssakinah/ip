@@ -1,4 +1,4 @@
-package abuhurairah;
+package abuhurairah.task;
 
 public class TaskTracker {
     private int completedTasks;

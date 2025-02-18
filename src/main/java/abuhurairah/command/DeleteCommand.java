@@ -1,4 +1,8 @@
-package abuhurairah;
+package abuhurairah.command;
+
+import abuhurairah.task.Task;
+import abuhurairah.task.TaskTracker;
+import abuhurairah.ui.Ui;
 
 import java.util.ArrayList;
 

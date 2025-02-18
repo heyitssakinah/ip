@@ -2,6 +2,7 @@ package abuhurairah;
 
 import java.io.IOException;
 
+import abuhurairah.ui.MainWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

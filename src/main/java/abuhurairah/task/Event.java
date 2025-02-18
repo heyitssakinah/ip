@@ -1,4 +1,4 @@
-package abuhurairah;
+package abuhurairah.task;
 
 /**
  * Represents an event task with a start and end time.

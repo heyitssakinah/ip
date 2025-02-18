@@ -1,4 +1,7 @@
-package abuhurairah;
+package abuhurairah.command;
+
+import abuhurairah.task.Deadline;
+import abuhurairah.task.Task;
 
 import java.util.ArrayList;
 

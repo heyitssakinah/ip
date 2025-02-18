@@ -1,5 +1,8 @@
-package abuhurairah;
+package abuhurairah.ui;
 
+import abuhurairah.*;
+import abuhurairah.storage.Storage;
+import abuhurairah.task.TaskList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
