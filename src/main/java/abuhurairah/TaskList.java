@@ -117,7 +117,7 @@ public class TaskList {
                     + "Please use the YYYY-MM-DD HH:mm OR MMM dd yyyy hh:mm a format\n";
         } catch (IllegalArgumentException e) {
             return "Please use one of the following commands:\n"
-                    + "list, mark, unmark, event, deadline, todo, get.\n";
+                    + "list, mark, unmark, event, deadline, todo, get, find.\n";
         }
         return "";
     }
