@@ -1,5 +1,8 @@
-package abuhurairah;
+package abuhurairah.ui;
 
+import abuhurairah.AbuHurairah;
+import abuhurairah.storage.Storage;
+import abuhurairah.task.TaskList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -25,10 +28,12 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image abuHurairahImage = new Image(this.getClass().getResourceAsStream("/images/DaAbuhurairah.png"));
 
+    /**
+     * Creates a scrolling pane window
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        // handle welcome
     }
 
     /** Injects the Abuhurairah instance */
@@ -36,6 +41,10 @@ public class MainWindow extends AnchorPane {
         abuHurairah = d;
     }
 
+    /**
+     * Starts the main window by retrieving and displaying the task list and welcome message.
+     * It checks if there are tasks in the list and shows appropriate welcome messages.
+     */
     public void start() {
         Storage storage = abuHurairah.getStorage();
         TaskList taskList = abuHurairah.getTaskList();
@@ -55,6 +64,10 @@ public class MainWindow extends AnchorPane {
         }
     }
 
+    /**
+     * Handles the user input, processing the text entered in the userInput field.
+     * It processes the user's input, generates the response, and displays the dialog.
+     */
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();

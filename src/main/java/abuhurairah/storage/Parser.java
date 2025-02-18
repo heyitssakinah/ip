@@ -1,6 +1,9 @@
-package abuhurairah;
+package abuhurairah.storage;
 
 import java.util.Arrays;
+
+import abuhurairah.task.TaskList;
+
 
 /**
  * The Parser
@@ -30,20 +33,11 @@ public class Parser {
     }
 
     /**
-     * Parses a string argument and converts it into an integer representing
-     * the index of a task to be marked or unmarked.
-     *
-     * @param reqArgsString The string containing the task index.
-     * @return The integer representation of the task index.
-     */
-
-    /**
      * Converts a line of text from the storage file into a task and adds it to the TaskList.
      *
      * @param s           The text line representing a task.
      * @param taskList    The TaskList where the task will be stored.
      * @param taskCount   The current task count.
-     * @return The updated count of incomplete tasks.
      */
     public void textToArrayList(String s, TaskList taskList, int taskCount) {
         String cleanedString = s.replaceAll("\\[|\\(|\\)", "").trim();

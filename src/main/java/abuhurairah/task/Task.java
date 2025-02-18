@@ -1,4 +1,4 @@
-package abuhurairah;
+package abuhurairah.task;
 
 /**
  * Represents an abstract task with a description and completion status.

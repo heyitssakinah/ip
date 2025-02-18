@@ -1,8 +1,14 @@
-package abuhurairah;
+package abuhurairah.task;
 
-import java.awt.*;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+
+import abuhurairah.command.AddCommand;
+import abuhurairah.command.DeleteCommand;
+import abuhurairah.command.MarkCommand;
+import abuhurairah.command.RetrieveCommand;
+import abuhurairah.storage.Parser;
+
 
 /**
  * The TaskList class manages a list of tasks.
@@ -22,6 +28,11 @@ public class TaskList {
         this.taskTracker = new TaskTracker();
     }
 
+    /**
+     * Generates a string representation of the list of tasks.
+     *
+     * @return A string representing the list of tasks,
+     */
     public String printStoredList() {
         String storedList = "";
         for (int i = 0; i < tasks.size(); i++) {
@@ -62,11 +73,16 @@ public class TaskList {
      * @param request The input request.
      * @return true if the request is "list", otherwise false.
      */
-    boolean isList(String request) {
+    public boolean isList(String request) {
         return request.equalsIgnoreCase(Req.LIST.toString());
     }
 
-    boolean isEmpty() {
+    /**
+     * Checks if the given request is a "list" command.
+     *
+     * @return true if the list is empty, otherwise false.
+     */
+    public boolean isEmpty() {
         return tasks.isEmpty();
     }
 

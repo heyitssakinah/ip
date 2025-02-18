@@ -1,10 +1,14 @@
-package abuhurairah;
+package abuhurairah.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+
+import abuhurairah.task.Task;
+import abuhurairah.task.TaskList;
+import abuhurairah.ui.Ui;
 
 /**
  * The Storage class handles reading from and writing to a file.
@@ -58,7 +62,6 @@ public class Storage {
      * Parses each line using the Parser and updates the task list.
      *
      * @param taskList The TaskList to store the retrieved tasks.
-     * @return The count of tasks that are not yet completed.
      */
     public void getStore(TaskList taskList) {
         assert taskList != null : "TaskList cannot be null";

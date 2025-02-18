@@ -1,5 +1,8 @@
-package abuhurairah;
+package abuhurairah.ui;
 // change to script class
+
+import abuhurairah.task.Task;
+
 /**
  * The Ui class handles all user interface interactions, including
  * displaying messages, errors, and task updates.

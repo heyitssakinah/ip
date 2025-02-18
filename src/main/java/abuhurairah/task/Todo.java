@@ -1,4 +1,4 @@
-package abuhurairah;
+package abuhurairah.task;
 
 /**
  * Represents a simple to-do task without any time constraints.

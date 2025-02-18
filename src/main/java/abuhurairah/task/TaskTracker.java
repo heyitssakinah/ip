@@ -1,5 +1,8 @@
-package abuhurairah;
+package abuhurairah.task;
 
+/**
+ * Keeps track of the number of completed tasks
+ */
 public class TaskTracker {
     private int completedTasks;
 
