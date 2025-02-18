@@ -78,6 +78,7 @@ public class TaskList {
      * @return response of the bot
      */
     public String argumentHandling(String taskString) {
+        assert tasks != null : "TaskList cannot be null";
         String[] requestArgsArr = taskString.split(" ");
         String reqType = requestArgsArr[0];
         String reqArgsString = parser.getArgs(requestArgsArr);
