@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import abuhurairah.command.AliasCommand;
+import abuhurairah.task.CommandAlias;
+import abuhurairah.task.CommandType;
 import abuhurairah.task.TaskList;
 import abuhurairah.task.Todo;
 import org.junit.jupiter.api.BeforeEach;
@@ -65,5 +68,12 @@ public class TaskListTest {
         int initialCount = taskList.getTasks().size();
         taskList.argumentHandling("invalidCommand test");
         assertEquals(initialCount, taskList.getTasks().size()); // Should not add a task
+    }
+
+    @Test
+    public void argumentHandling_aliasCommand_createsAlias() {
+        String s = "alias todo t";
+        taskList.argumentHandling(s);
+        assertTrue(CommandAlias.getCommandType("t").equals(CommandType.todo));
     }
 }

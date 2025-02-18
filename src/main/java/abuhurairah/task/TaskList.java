@@ -3,11 +3,10 @@ package abuhurairah.task;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
-import abuhurairah.command.AddCommand;
-import abuhurairah.command.DeleteCommand;
-import abuhurairah.command.MarkCommand;
-import abuhurairah.command.RetrieveCommand;
+import abuhurairah.command.*;
 import abuhurairah.storage.Parser;
+
+import static abuhurairah.task.CommandType.*;
 
 
 /**
@@ -42,20 +41,13 @@ public class TaskList {
     }
 
     /**
-     * Enumeration of valid request types.
-     */
-    private enum Req {
-        MARK, UNMARK, EVENT, DEADLINE, TODO, LIST, DELETE, BYE, GET, FIND
-    }
-
-    /**
      * Checks if the given request is a "bye" command.
      *
      * @param request The input request.
      * @return true if the request is "bye", otherwise false.
      */
     public boolean isBye(String request) {
-        return request.equalsIgnoreCase(Req.BYE.toString());
+        return request.equalsIgnoreCase(bye.toString());
     }
 
     /**
@@ -74,7 +66,7 @@ public class TaskList {
      * @return true if the request is "list", otherwise false.
      */
     public boolean isList(String request) {
-        return request.equalsIgnoreCase(Req.LIST.toString());
+        return request.equalsIgnoreCase(list.toString());
     }
 
     /**
@@ -97,31 +89,33 @@ public class TaskList {
         assert tasks != null : "TaskList cannot be null";
         String[] requestArgsArr = taskString.split(" ");
         String reqType = requestArgsArr[0];
+        if (requestArgsArr.length == 1 && !isList(reqType) && !isBye(reqType)) {
+            return "you're likely missing a request description";
+        }
         String reqArgsString = parser.getArgs(requestArgsArr);
         try {
-            Req reqTypeEnum = Req.valueOf(reqType.toUpperCase());
-            if (requestArgsArr.length == 1 && !isList(reqType) && !isBye(reqType)) {
-                return "you're likely missing a request description";
-            }
-            switch (reqTypeEnum) {
-            case LIST:
+            CommandType command = CommandAlias.getCommandType(reqType.toLowerCase());
+            switch (command) {
+            case list:
                 return RetrieveCommand.listTasks(tasks);
-            case FIND:
+            case find:
                 return RetrieveCommand.findTask(reqArgsString, tasks);
-            case MARK:
+            case mark:
                 return MarkCommand.markTask(reqArgsString, tasks, taskTracker);
-            case UNMARK:
+            case unmark:
                 return MarkCommand.unMarkTask(reqArgsString, tasks, taskTracker);
-            case EVENT:
+            case event:
                 return AddCommand.addEvent(reqArgsString, tasks, taskTracker);
-            case DEADLINE:
+            case deadline:
                 return AddCommand.addDeadline(reqArgsString, tasks, taskTracker);
-            case TODO:
+            case todo:
                 return AddCommand.addTodo(reqArgsString, tasks, taskTracker);
-            case DELETE:
+            case delete:
                 return DeleteCommand.deleteTask(reqArgsString, tasks, taskTracker);
-            case GET:
+            case get:
                 return RetrieveCommand.getOverdueTask(reqArgsString, tasks);
+            case alias:
+                return AliasCommand.setAlias(reqArgsString);
             default:
             }
         } catch (ArrayIndexOutOfBoundsException e) {

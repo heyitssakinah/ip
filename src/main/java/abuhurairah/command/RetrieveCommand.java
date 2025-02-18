@@ -20,7 +20,7 @@ public class RetrieveCommand {
      */
     public static String printList(ArrayList<Task> tasks) {
         return tasks.stream()
-                .map(task -> " " + (tasks.indexOf(task) + 1) + "." + task.toString() + "\n")
+                .map(task -> " " + (tasks.indexOf(task) + 1) + "." + task.toString())
                 .collect(Collectors.joining("\n"));
     }
 
