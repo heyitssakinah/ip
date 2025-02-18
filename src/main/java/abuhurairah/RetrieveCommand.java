@@ -1,6 +1,8 @@
 package abuhurairah;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class RetrieveCommand {
 
@@ -8,27 +10,31 @@ public class RetrieveCommand {
      * Prints all tasks stored in the task list.
      */
     public static String printList(ArrayList<Task> tasks) {
-        String storedList = "";
-        for (int i = 0; i < tasks.size(); i++) {
-            storedList += " " + (i + 1) + "." + tasks.get(i).toString() + "\n";
-        }
-        return storedList;
+        return tasks.stream()
+                .map(task -> " " + (tasks.indexOf(task) + 1) + "." + task.toString() + "\n")
+                .collect(Collectors.joining("\n"));
     }
 
     public static String getOverdueTask(String reqArgsString, ArrayList<Task> tasks) {
         if (reqArgsString.equalsIgnoreCase("OVERDUE")) {
-            String response = "Here are the OVERDUE tasks :)";
-            for (Task overdueTask : tasks) {
-                if(overdueTask instanceof Deadline) {
-                    if(overdueTask.isOverdue() && !overdueTask.isComplete()) {
-                        response += overdueTask.toString();
-                    }
-                }
+            List<Task> overdueTasks = tasks.stream()
+                    .filter(task -> task instanceof Deadline)
+                    .filter(task ->task.isOverdue() && !task.isComplete())
+                    .toList();
+
+            if (overdueTasks.isEmpty()) {
+                return "No overdue tasks.";
             }
-            return response;
+
+            String overdueList = overdueTasks.stream()
+                    .map(Task::toString)
+                    .collect(Collectors.joining("\n"));
+
+            return "Here are the OVERDUE tasks :)\n" + overdueList;
         }
-        return "get - [Overdue] ? ";
+        return "Wrong Format: get [overdue]";
     }
+
     public static String listTasks(ArrayList<Task> tasks) {
         if (tasks.isEmpty()) {
             return"No new tasks, YAY";
@@ -38,15 +44,13 @@ public class RetrieveCommand {
 
     public static String findTask(String reqArgsString, ArrayList<Task> tasks) {
         String searchItem = reqArgsString.split(" ")[0];
-        boolean found = false;
         String response = "Searching for your item....\n";
-        for (Task taskItem : tasks) {
-            if (taskItem.getDescription().toLowerCase().contains(searchItem.toLowerCase())) {
-                response = response + taskItem.toString() + "\n";
-                found = true;
-            }
-        }
-        if (!found) {
+        String foundTasks = tasks.stream()
+                .filter(task -> task.getDescription().toLowerCase().contains(searchItem.toLowerCase()))
+                .map(Task::toString)
+                .collect(Collectors.joining("\n"));
+
+        if (foundTasks.trim().isEmpty()) {
             return "no such item!!!";
         }
         return response;

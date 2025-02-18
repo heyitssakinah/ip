@@ -66,4 +66,5 @@ public abstract class Task {
     public String toString() {
         return complete ? "[X] " + description : "[ ] " + description;
     }
+
 }
