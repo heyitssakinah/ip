@@ -1,10 +1,13 @@
 package abuhurairah.command;
 
+import java.util.ArrayList;
+
 import abuhurairah.task.Deadline;
 import abuhurairah.task.Task;
 
-import java.util.ArrayList;
-
+/**
+ * Handles inputs where retrieving data from the list is required
+ */
 public class RetrieveCommand {
 
     /**
@@ -32,8 +35,8 @@ public class RetrieveCommand {
         if (reqArgsString.equalsIgnoreCase("OVERDUE")) {
             String response = "Here are the OVERDUE tasks :)";
             for (Task overdueTask : tasks) {
-                if(overdueTask instanceof Deadline) {
-                    if(overdueTask.isOverdue() && !overdueTask.isComplete()) {
+                if (overdueTask instanceof Deadline) {
+                    if (overdueTask.isOverdue() && !overdueTask.isComplete()) {
                         response += overdueTask.toString();
                     }
                 }
@@ -51,9 +54,9 @@ public class RetrieveCommand {
      */
     public static String listTasks(ArrayList<Task> tasks) {
         if (tasks.isEmpty()) {
-            return"No new tasks, YAY";
+            return "No new tasks, YAY";
         }
-        return"That's a lot of things to do...\n" + printList(tasks);
+        return "That's a lot of things to do...\n" + printList(tasks);
     }
 
     /**

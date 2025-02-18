@@ -23,9 +23,9 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setAbuHurairah(abuHurairarh);  // inject the Duke instance
+            fxmlLoader.<MainWindow>getController().setAbuHurairah(abuHurairarh); // inject the Duke instance
             stage.show();
-            fxmlLoader.<MainWindow>getController().start();  // initiate bot
+            fxmlLoader.<MainWindow>getController().start(); // initiate bot
         } catch (IOException e) {
             e.printStackTrace();
         }

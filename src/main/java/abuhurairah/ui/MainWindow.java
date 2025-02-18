@@ -1,6 +1,6 @@
 package abuhurairah.ui;
 
-import abuhurairah.*;
+import abuhurairah.AbuHurairah;
 import abuhurairah.storage.Storage;
 import abuhurairah.task.TaskList;
 import javafx.fxml.FXML;
@@ -28,10 +28,12 @@ public class MainWindow extends AnchorPane {
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image abuHurairahImage = new Image(this.getClass().getResourceAsStream("/images/DaAbuhurairah.png"));
 
+    /**
+     * Creates a scrolling pane window
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        // handle welcome
     }
 
     /** Injects the Abuhurairah instance */

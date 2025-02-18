@@ -1,11 +1,17 @@
 package abuhurairah.command;
 
-import abuhurairah.task.*;
-import abuhurairah.ui.Ui;
-
 import java.util.ArrayList;
 
+import abuhurairah.task.Deadline;
+import abuhurairah.task.Event;
+import abuhurairah.task.Task;
+import abuhurairah.task.TaskTracker;
+import abuhurairah.task.Todo;
+import abuhurairah.ui.Ui;
 
+/**
+ * Hand;es input where adding new tasks to the list is required
+ */
 public class AddCommand {
 
     /**

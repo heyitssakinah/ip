@@ -1,11 +1,14 @@
 package abuhurairah.command;
 
+import java.util.ArrayList;
+
 import abuhurairah.task.Task;
 import abuhurairah.task.TaskTracker;
 import abuhurairah.ui.Ui;
 
-import java.util.ArrayList;
-
+/**
+ * Updates list according to completed tasks
+ */
 public class MarkCommand {
 
     /**
