@@ -7,6 +7,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import abuhurairah.storage.Storage;
+import abuhurairah.task.Task;
+import abuhurairah.task.TaskList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -32,8 +35,8 @@ public class StorageTest {
 
     @Test
     public void store_savesTasksToFile() throws IOException {
-        taskList.argumentHandling("todo Read book", 0, taskList);
-        taskList.argumentHandling("EvenT cry /from now /to later", 0, taskList);
+        taskList.argumentHandling("todo Read book");
+        taskList.argumentHandling("EvenT cry /from now /to later");
 
         storage.store(taskList);
         File file = storage.getFile();
@@ -44,12 +47,12 @@ public class StorageTest {
 
     @Test
     public void getStore_loadsTasksFromFile() {
-        taskList.argumentHandling("todo Read book", 0, taskList);
-        taskList.argumentHandling("EvenT cry /from now /to later", 0, taskList);
+        taskList.argumentHandling("todo Read book");
+        taskList.argumentHandling("EvenT cry /from now /to later");
         storage.store(taskList);
 
         TaskList loadedList = new TaskList();
-        int unDoneCount = storage.getStore(storage.getPath(), loadedList, "TestUser");
+        storage.getStore(loadedList);
 
         List<Task> tasks = loadedList.getTasks();
         assertEquals(2, tasks.size());
