@@ -17,7 +17,7 @@ Abu Hurairah was designed as part of ***NUS CS2103T Course's Individual Project*
 
 ### Setting Up
 - Head to the Releases section of this repo
-- Download the abuhurairah.jar file in v0.3
+- Download the abuhurairah.jar file in v0.2
 - Open your terminal and navigate to the jar location
 - Run `java -jar abuhurairah.jar`
 - Try it out! (Feel free to fork the repo and suggest improvements too)
