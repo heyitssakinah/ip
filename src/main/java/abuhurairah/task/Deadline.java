@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
  */
 public class Deadline extends Task {
     private LocalDateTime by;
-    private boolean overdue;
+    private boolean isOverdue;
 
     /**
      * Constructs a Deadline task with a description and a due date.
@@ -31,7 +31,7 @@ public class Deadline extends Task {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             this.by = LocalDateTime.parse(by.trim(), formatter);
         }
-        this.overdue = false;
+        this.isOverdue = false;
     }
 
     /**
@@ -42,9 +42,9 @@ public class Deadline extends Task {
     @Override
     public boolean isOverdue() {
         if (LocalDateTime.now().isAfter(this.by)) {
-            this.overdue = true;
+            this.isOverdue = true;
         }
-        return this.overdue;
+        return this.isOverdue;
     }
 
     /**

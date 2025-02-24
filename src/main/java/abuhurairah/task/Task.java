@@ -7,7 +7,7 @@ package abuhurairah.task;
  */
 public abstract class Task {
     private final String description;
-    private boolean complete;
+    private boolean isComplete;
 
     /**
      * Constructs a Task with the specified description.
@@ -17,7 +17,7 @@ public abstract class Task {
      */
     public Task(String description) {
         this.description = description;
-        this.complete = false;
+        this.isComplete = false;
     }
 
     /**
@@ -35,7 +35,7 @@ public abstract class Task {
      * @param complete true if the task is completed, false otherwise.
      */
     public void setComplete(boolean complete) {
-        this.complete = complete;
+        this.isComplete = complete;
     }
 
     /**
@@ -44,7 +44,7 @@ public abstract class Task {
      * @return true if the task is completed, otherwise false .
      */
     public boolean isComplete() {
-        return complete;
+        return isComplete;
     }
 
     /**
@@ -59,12 +59,12 @@ public abstract class Task {
 
     /**
      * Returns a string representation of the task.
-     * If the task is complete, it is marked with "[X]". Otherwise, it is marked with "[ ]".
+     * If the task is isComplete, it is marked with "[X]". Otherwise, it is marked with "[ ]".
      *
      * @return A string representation of the task.
      */
     public String toString() {
-        return complete ? "[X] " + description : "[ ] " + description;
+        return isComplete ? "[X] " + description : "[ ] " + description;
     }
 
 }
