@@ -24,10 +24,10 @@ This chatbot can handle various types of tasks and commands, which can be invoke
     
 3. **event**: Adds an event task to your task list.
    - Example: `event <event_description> /from <event_start_time> /to <event_end_time> `
-   - Start and end time should be formatted as "YYYY-MM-DD HH:mm" OR "MMM dd yyyy hh:mm a" format
 
 4. **deadline**: Adds a deadline task to your task list.
    - Example: `deadline <task_description> /by <deadline_time>`
+   - deadline time should be formatted as "YYYY-MM-DD HH:mm" OR "MMM dd yyyy hh:mm a"
   
 1. **mark**: Marks a task as completed.
    - Example: `mark <task_number>`
@@ -57,7 +57,7 @@ This chatbot can handle various types of tasks and commands, which can be invoke
 
 ```bash
 todo Buy groceries
-event Meeting with John /from 2024-02-10 10:00 /to 2024-02-10 12:00
+event Meeting with John /from now /to later
 deadline Complete project /by Jan 01 2025 10:30 am
 mark 2
 unmark 1
