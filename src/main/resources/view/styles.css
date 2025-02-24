@@ -1,0 +1,73 @@
+/* style.css */
+.root {
+    -fx-background-color: #C2C5AA;
+}
+
+.scroll-pane {
+    -fx-background-color: #C2C5AA;
+}
+
+.send-button {
+    -fx-background-color: #7F4F24; /* Purple background */
+    -fx-text-fill: white; /* White text */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 5px 10px;
+}
+
+.send-button:hover {
+    -fx-background-color: #582F0E; /* Darker Purple */
+}
+
+.send-button:pressed {
+    -fx-background-color: #936639; /* Lighter Purple */
+}
+
+.dialog-container {
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-background-color: #C2C5AA;
+}
+
+.dialog-text {
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-background-radius: 10px;
+}
+
+.dialog-image {
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.5, 0, 2);
+}
+
+.user-dialog {
+    -fx-background-color: #A4AC86; /* Light Blue */
+    -fx-text-fill: black;
+    -fx-padding: 8px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.bot-dialog {
+    -fx-background-color: #B6AD90; /* Light Gray */
+    -fx-text-fill: black;
+    -fx-padding: 8px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CCCCCC;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+}
+
+
