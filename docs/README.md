@@ -15,9 +15,15 @@ Abu Hurairah was designed as part of ***NUS CS2103T Course's Individual Project*
 
 ## 🤠 How to Use
 
-This chatbot can handle various types of tasks and commands, which can be invoked using specific keywords. Below is a guide to the available commands and their functionalities:
+### Setting Up
+- Head to the Releases section of this repo
+- Download the abuhurairah.jar file in v0.2
+- Open your terminal and navigate to the jar location
+- Run `java -jar abuhurairah.jar`
+- Try it out! (Feel free to fork the repo and suggest improvements too)
 
 ### Commands
+This chatbot can handle various types of tasks and commands, which can be invoked using specific keywords. Below is a guide to the available commands and their functionalities:
 
 1. **todo**: Adds a simple to-do task to your list.
    - Example: `todo <task_description>`
