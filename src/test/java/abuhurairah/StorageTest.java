@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.List;
 
 import abuhurairah.storage.Storage;
+import abuhurairah.storage.Parser;
+import abuhurairah.task.Event;
 import abuhurairah.task.Task;
 import abuhurairah.task.TaskList;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,12 +21,14 @@ public class StorageTest {
     File tempDir;
     private Storage storage;
     private TaskList taskList;
+    private int taskCount;
 
     @BeforeEach
     public void setUp() {
         File tempFile = new File(tempDir, "testStorage.txt");
         storage = new Storage(tempFile.getAbsolutePath());
         taskList = new TaskList();
+        taskCount = 0;
     }
 
     @Test
@@ -58,5 +62,16 @@ public class StorageTest {
         assertEquals(2, tasks.size());
         assertEquals("[T][ ] Read book", tasks.get(0).toString());
         assertEquals("[E][ ] cry (from: now to: later)", tasks.get(1).toString());
+    }
+
+    @Test
+    public void testTextToArrayList_EventTask_Marked() {
+        String input = "[E][X] cry (from: now to: later)";
+        Parser.textToArrayList(input, taskList, 0);
+
+        // Check that taskList contains an Event task
+        assertTrue(taskList.getTasks().get(0) instanceof Event);
+        Event eventTask = (Event) taskList.getTasks().get(0);
+        assertTrue(eventTask.isComplete()); // Check that the task is marked as complete
     }
 }

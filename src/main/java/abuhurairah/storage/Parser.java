@@ -39,7 +39,7 @@ public class Parser {
      * @param taskList    The TaskList where the task will be stored.
      * @param taskCount   The current task count.
      */
-    public void textToArrayList(String s, TaskList taskList, int taskCount) {
+    public static void textToArrayList(String s, TaskList taskList, int taskCount) {
         String cleanedString = s.replaceAll("\\[|\\(|\\)", "").trim();
         cleanedString = cleanedString.replaceAll("\\]", " ").trim();
         cleanedString = cleanedString.replaceAll("from:", "/from");
@@ -52,7 +52,8 @@ public class Parser {
             cleanedString = cleanedString.replaceAll("X ", "");
             cleanedString = cleanedString.replaceAll("  ", " ");
             taskList.argumentHandling(cleanedString);
-            taskList.argumentHandling("MARK" + String.valueOf(taskCount));
+            taskList.getTaskTracker().addCompletedTask();
+            taskList.getTasks().get(taskCount).setComplete(true);
         } else {
             cleanedString = cleanedString.replaceAll("    ", " ");
             taskList.argumentHandling(cleanedString);

@@ -11,7 +11,7 @@ public class TaskTracker {
     }
 
     public void addCompletedTask() {
-        completedTasks++;
+        this.completedTasks += 1;
     }
 
     public void removeCompletedTask() {

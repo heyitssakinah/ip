@@ -70,8 +70,8 @@ public class Storage {
             File f = getFile();
             Scanner sc = new Scanner(f);
             while (sc.hasNextLine()) {
-                taskCount++;
                 parser.textToArrayList(sc.nextLine(), taskList, taskCount);
+                taskCount += 1;
             }
         } catch (FileNotFoundException e) {
             System.err.println("Error: Storage file not found at " + path);

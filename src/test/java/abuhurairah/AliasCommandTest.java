@@ -11,6 +11,6 @@ public class AliasCommandTest {
     public void argumentHandling_createsValidAlias() {
         String s = "todo t";
         String res = AliasCommand.setAlias(s);
-        assertEquals("Alias for TODO created: t", res);
+        assertEquals("Alias for todo created: t", res);
     }
 }

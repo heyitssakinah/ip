@@ -10,7 +10,6 @@ import abuhurairah.ui.Ui;
  * Updates list according to completed tasks
  */
 public class MarkCommand {
-
     /**
      * Marks a task as completed in the task list.
      *

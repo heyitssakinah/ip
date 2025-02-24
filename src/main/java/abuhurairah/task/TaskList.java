@@ -37,7 +37,7 @@ public class TaskList {
         for (int i = 0; i < tasks.size(); i++) {
             storedList += " " + (i + 1) + ". " + tasks.get(i).toString() + "\n";
         }
-        return storedList;
+        return storedList + "\n";
     }
 
     /**
@@ -58,6 +58,14 @@ public class TaskList {
     public ArrayList<Task> getTasks() {
         return tasks;
     }
+
+    /**
+     * @return A TaskTracker object
+     */
+    public TaskTracker getTaskTracker(){
+        return taskTracker;
+    }
+
 
     /**
      * Checks if the given request is a "list" command.
