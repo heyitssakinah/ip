@@ -1,12 +1,13 @@
 package abuhurairah.task;
 
+import static abuhurairah.task.CommandType.*;
+
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import abuhurairah.command.*;
 import abuhurairah.storage.Parser;
 
-import static abuhurairah.task.CommandType.*;
 
 
 /**
@@ -62,7 +63,7 @@ public class TaskList {
     /**
      * @return A TaskTracker object
      */
-    public TaskTracker getTaskTracker(){
+    public TaskTracker getTaskTracker() {
         return taskTracker;
     }
 

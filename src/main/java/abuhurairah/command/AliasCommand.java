@@ -3,6 +3,9 @@ package abuhurairah.command;
 import abuhurairah.task.CommandAlias;
 import abuhurairah.task.CommandType;
 
+/**
+ * Handles input alias
+ */
 public class AliasCommand {
     public static String setAlias(String reqArgsString) {
         String[] request;

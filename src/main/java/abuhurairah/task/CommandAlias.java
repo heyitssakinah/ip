@@ -3,6 +3,9 @@ package abuhurairah.task;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Keeps track of all the command types and creates new aliased
+ */
 public class CommandAlias {
     private static final Map<String, CommandType> aliasMap = new HashMap<>();
 
