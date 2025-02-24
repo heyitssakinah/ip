@@ -1,5 +1,5 @@
 # Abu Hurairah Bot 
-> Designed for muggers by muggers
+> Designed for muggers by muggers (me)
 
 ## 🐱 How it looks
 ![Interface](./Ui.png)
