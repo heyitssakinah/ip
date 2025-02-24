@@ -39,7 +39,7 @@ public class RetrieveCommand {
                     .toList();
 
             if (overdueTasks.isEmpty()) {
-                return "No overdue tasks.";
+                return "No overdue tasks!!";
             }
 
             String overdueList = overdueTasks.stream()
@@ -61,7 +61,7 @@ public class RetrieveCommand {
         if (tasks.isEmpty()) {
             return "No new tasks, YAY";
         }
-        return "That's a lot of things to do...\n" + printList(tasks);
+        return "That's like not even that many! you got this!\n" + printList(tasks);
     }
 
     /**
