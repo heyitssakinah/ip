@@ -33,7 +33,6 @@ public class DialogBox extends HBox {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         dialog.setText(text);
         displayPicture.setImage(img);
     }
@@ -49,11 +48,14 @@ public class DialogBox extends HBox {
     }
 
     public static DialogBox getUserDialog(String text, Image img) {
-        return new DialogBox(text, img);
+        DialogBox db = new DialogBox(text, img);
+        db.getStyleClass().add("user-dialog");
+        return db;
     }
 
     public static DialogBox getAbuHurairahDialog(String text, Image img) {
         var db = new DialogBox(text, img);
+        db.getStyleClass().add("bot-dialog");
         db.flip();
         return db;
     }
