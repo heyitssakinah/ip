@@ -1,11 +1,16 @@
 package abuhurairah.task;
 
-import static abuhurairah.task.CommandType.*;
+import static abuhurairah.task.CommandType.bye;
+import static abuhurairah.task.CommandType.list;
 
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
-import abuhurairah.command.*;
+import abuhurairah.command.AddCommand;
+import abuhurairah.command.AliasCommand;
+import abuhurairah.command.DeleteCommand;
+import abuhurairah.command.MarkCommand;
+import abuhurairah.command.RetrieveCommand;
 import abuhurairah.storage.Parser;
 
 

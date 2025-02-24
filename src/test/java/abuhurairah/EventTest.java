@@ -2,8 +2,9 @@ package abuhurairah;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import abuhurairah.task.Event;
 import org.junit.jupiter.api.Test;
+
+import abuhurairah.task.Event;
 
 public class EventTest {
     @Test

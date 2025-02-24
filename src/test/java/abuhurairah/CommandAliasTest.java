@@ -2,11 +2,11 @@ package abuhurairah;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import abuhurairah.task.CommandType;
 import org.junit.jupiter.api.Test;
 
 import abuhurairah.command.AliasCommand;
 import abuhurairah.task.CommandAlias;
+import abuhurairah.task.CommandType;
 
 public class CommandAliasTest {
     @Test

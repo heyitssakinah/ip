@@ -74,8 +74,7 @@ public class Storage {
                 taskCount += 1;
             }
         } catch (FileNotFoundException e) {
-            System.err.println("Error: Storage file not found at " + path);
-            e.printStackTrace(); // Debugging purpose
+            System.err.println("No existing file found at " + path);
         }
     }
 

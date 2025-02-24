@@ -1,11 +1,16 @@
 package abuhurairah;
 
-import abuhurairah.task.Deadline;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+
+import org.junit.jupiter.api.Test;
+
+import abuhurairah.task.Deadline;
 
 public class DeadlineTest {
 
@@ -13,7 +18,7 @@ public class DeadlineTest {
     public void testDeadlineConstructorWithValidDateFormats() {
         // Testing first format (e.g., "Jan 01 2025 10:30 AM")
         Deadline deadline1 = new Deadline("Complete project ", "Jan 01 2025 10:30 am");
-        assertNotNull(deadline1);  // Ensure object is created
+        assertNotNull(deadline1); // Ensure object is created
         assertEquals("[D][ ] Complete project (by: Jan 01 2025 10:30 am)", deadline1.toString()); // Check task
 
         // Testing second format (e.g., "2025-01-01 10:30")

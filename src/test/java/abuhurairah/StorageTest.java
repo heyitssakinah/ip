@@ -7,14 +7,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import abuhurairah.storage.Storage;
-import abuhurairah.storage.Parser;
-import abuhurairah.task.Event;
-import abuhurairah.task.Task;
-import abuhurairah.task.TaskList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
+import abuhurairah.storage.Parser;
+import abuhurairah.storage.Storage;
+import abuhurairah.task.Event;
+import abuhurairah.task.Task;
+import abuhurairah.task.TaskList;
 
 public class StorageTest {
     @TempDir // JUnit5 Temporary Directory (auto-deletes after test)
@@ -65,7 +66,7 @@ public class StorageTest {
     }
 
     @Test
-    public void testTextToArrayList_EventTask_Marked() {
+    public void testTextToArrayListMarkedEvent() {
         String input = "[E][X] cry (from: now to: later)";
         Parser.textToArrayList(input, taskList, 0);
 
