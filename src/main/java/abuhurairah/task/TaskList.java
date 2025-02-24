@@ -108,7 +108,7 @@ public class TaskList {
             if (command == null) {
                 throw new CustomException("""
                         Please use one of the following commands:
-                        list, mark, unmark, event, deadline, todo, get, find.
+                        list, mark, unmark, event, deadline, todo, get overdue, find, bye, alias, delete.
                         """);
             }
             if (requestArgsArr.length == 1 && !isList(reqType) && !isBye(reqType)) {
