@@ -30,6 +30,6 @@ public class DeleteCommand {
             taskTracker.removeCompletedTask();
         }
         tasks.remove(index - 1);
-        return Ui.serveRequestBack("OKIE DELETED THIS TASK:", task, 0);
+        return Ui.serveRequestBack("OKIE DELETED THIS TASK:", task, taskTracker.getRemainingTasks(tasks.size()));
     }
 }

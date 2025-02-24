@@ -89,12 +89,18 @@ public class TaskList {
         assert tasks != null : "TaskList cannot be null";
         String[] requestArgsArr = taskString.split(" ");
         String reqType = requestArgsArr[0];
-        if (requestArgsArr.length == 1 && !isList(reqType) && !isBye(reqType)) {
-            return "you're likely missing a request description";
-        }
-        String reqArgsString = parser.getArgs(requestArgsArr);
         try {
             CommandType command = CommandAlias.getCommandType(reqType.toLowerCase());
+            if (command == null) {
+                throw new CustomException("""
+                        Please use one of the following commands:
+                        list, mark, unmark, event, deadline, todo, get, find.
+                        """);
+            }
+            if (requestArgsArr.length == 1 && !isList(reqType) && !isBye(reqType)) {
+                throw new CustomException("you're likely missing a request description");
+            }
+            String reqArgsString = parser.getArgs(requestArgsArr);
             switch (command) {
             case list:
                 return RetrieveCommand.listTasks(tasks);
@@ -125,9 +131,8 @@ public class TaskList {
         } catch (DateTimeParseException e) {
             return "Your date format is wrong.\n "
                     + "Please use the YYYY-MM-DD HH:mm OR MMM dd yyyy hh:mm a format\n";
-        } catch (IllegalArgumentException e) {
-            return "Please use one of the following commands:\n"
-                    + "list, mark, unmark, event, deadline, todo, get, find.\n";
+        } catch (CustomException e) {
+            return e.getMessage();
         }
         return "";
     }

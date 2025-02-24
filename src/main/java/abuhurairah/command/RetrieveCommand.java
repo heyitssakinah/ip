@@ -82,6 +82,6 @@ public class RetrieveCommand {
         if (foundTasks.trim().isEmpty()) {
             return "no such item!!!";
         }
-        return response;
+        return response + foundTasks;
     }
 }
